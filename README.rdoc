@@ -1,0 +1,11 @@
+== goodmarkR
+
+This is part of the final project for Ironhack Web Development Bootcamp.
+
+goodmarkR extension lets the user to store bookmarks into the app.
+
+* The application can be found here: https://github.com/gonzamvita/goodmarkR
+
+* The extension requires jQuery.
+
+* It logs in the user through an API Endpoint in the application.
