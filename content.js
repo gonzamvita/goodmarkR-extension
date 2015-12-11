@@ -2,10 +2,11 @@
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if(request.message === "clicked_browser_action") {
-      var siteHref = $(location).attr("href");
-
-      console.log(siteHref);
-      saveBookmark(siteHref);
+      // var siteHref = $(location).attr("href");
+      //
+      // console.log(siteHref);
+      // saveBookmark(siteHref);
+      alert("sdjfksjdfhksdf")
     }
   }
 );

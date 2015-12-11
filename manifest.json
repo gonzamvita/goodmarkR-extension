@@ -1,7 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "My Cool Extension",
-  "version": "0.1",
+  "name": "goodmarkR",
+  "version": "1.0",
+  "description": "This extension allows you to save bookmarks in an improved way!",
   "background": {
     "scripts": ["background.js"]
   },
@@ -14,6 +15,7 @@
     }
   ],
   "browser_action": {
+    "default_title": "goodmarkR",
     "default_popup": "extension.html",
     "default_icon": "icon.png"
   }
