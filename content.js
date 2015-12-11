@@ -6,7 +6,6 @@ chrome.runtime.onMessage.addListener(
       //
       // console.log(siteHref);
       // saveBookmark(siteHref);
-      alert("sdjfksjdfhksdf")
     }
   }
 );
