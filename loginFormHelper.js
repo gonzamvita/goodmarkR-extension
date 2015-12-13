@@ -1,7 +1,9 @@
-function createForm() {
+function createLogin() {
     var form = document.createElement("form");
     form.setAttribute('id',"loginForm");
     form.setAttribute('method',"post");
+
+    ////////////////////////////////////////////////////////////////////////////
 
     var emailDiv = document.createElement("div");
     var emailLabel = document.createElement("label"); //label element, email

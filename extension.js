@@ -1,14 +1,24 @@
 document.addEventListener('DOMContentLoaded', function () {
     if (localStorage["user_auth_token"] == null) {
         displayLoginForm();
-        document.querySelector('#loginForm').addEventListener('submit', onLogInSubmit);
     } else {
-        displayUserForm();
+        displayBookmarkForm();
     }
 });
 
 function displayLoginForm() {
-    $('.js-login').append(createForm());
+    $('.js-login').empty();
+    $('.js-login').append(createLogin());
+    document.querySelector('#loginForm').addEventListener('submit', onLogInSubmit);
+}
+
+function displayBookmarkForm() {
+    $('.js-login').empty()
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+        var url = tabs[0].url;
+        $('.js-login').append(createBookmark(url));
+        document.querySelector('#bookmarkForm').addEventListener('submit', onBookmarkSubmit);
+    });
 }
 
 function onLogInSubmit(e) {
@@ -38,8 +48,9 @@ function onLogInSubmit(e) {
 }
 
 function successfulLogin(response) {
-    $('.js-login').html("<p>Logged in as " + response.name + "!</p>");
+    $('.js-login').html("<p id='loginSuccess'>Logged in as " + response.name + "!</p>");
     storeTokenLocally(response.token);
+    $('#loginSuccess').hide(2000, displayBookmarkForm);
     // displayExtensionMenu();
 }
 
@@ -49,4 +60,10 @@ function badLogin(response) {
 
 function storeTokenLocally(token) {
     localStorage["user_auth_token"] = token;
+}
+
+function onBookmarkSubmit(e) {
+    var url = "http://localhost:3000/"
+    var apiEndpoint= "api/v1/users/sign_in"
+    e.preventDefault();
 }
