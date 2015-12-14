@@ -48,10 +48,9 @@ function onLogInSubmit(e) {
 }
 
 function successfulLogin(response) {
-    $('.js-login').html("<p id='loginSuccess'>Logged in as " + response.name + "!</p>");
+    $('.js-login').html("<div id='loginSuccess'><p>Logged in as " + response.name + "!</p></div>");
     storeTokenLocally(response.token);
     $('#loginSuccess').hide(2000, displayBookmarkForm);
-    // displayExtensionMenu();
 }
 
 function badLogin(response) {
@@ -62,8 +61,37 @@ function storeTokenLocally(token) {
     localStorage["user_auth_token"] = token;
 }
 
+function loadUserToken(token) {
+    var token = localStorage["user_auth_token"];
+    return token;
+}
+
 function onBookmarkSubmit(e) {
     var url = "http://localhost:3000/"
-    var apiEndpoint= "api/v1/users/sign_in"
+    var apiEndpoint= "api/v1/bookmarks"
     e.preventDefault();
+
+    bookmarkBuilder(function(bookmark){
+        bookmark.userToken = loadUserToken();
+
+        $.ajax({
+            type: "POST",
+            url: url + apiEndpoint,
+            data: bookmark,
+            dataType: "JSON",
+            error: function(response) {
+                console.log(response);
+            },
+            success: function(response) {
+                successfulBookmarkSave(response);
+                console.log(response);
+            }
+        });
+    });
+
+}
+
+function successfulBookmarkSave() {
+    $('.js-login').html("<div id='bookmarkSuccess'><p>Bookmark saved!!</p></div>");
+    $('#bookmarkSuccess').hide(2000, displayBookmarkForm);
 }
