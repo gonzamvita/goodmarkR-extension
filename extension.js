@@ -72,6 +72,7 @@ function onBookmarkSubmit(e) {
     e.preventDefault();
 
     bookmarkBuilder(function(bookmark){
+        bookmark.title = $("#bookmarkTitle").val();
         bookmark.userToken = loadUserToken();
 
         $.ajax({
