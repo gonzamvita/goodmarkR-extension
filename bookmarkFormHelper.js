@@ -20,6 +20,34 @@ function createBookmark(url) {
 
     ////////////////////////////////////////////////////////////////////////////
 
+    var typeLabel = document.createElement("label"); //label element, bookm~
+    typeLabel.setAttribute('for',"type");
+    typeLabel.innerHTML = "Type";
+
+    var typeInput = document.createElement("select"); //input element, bookm~
+    typeInput.setAttribute('id',"bookmarkType");
+    typeInput.setAttribute('type',"text");
+
+    var opt1 = document.createElement('option');
+    opt1.value = 1;
+    opt1.innerHTML = "New";
+    typeInput.appendChild(opt1);
+
+    var opt2 = document.createElement('option');
+    opt2.value = 2;
+    opt2.innerHTML = "Image";
+    typeInput.appendChild(opt2);
+
+    var opt3 = document.createElement('option');
+    opt3.value = 3;
+    opt3.innerHTML = "General";
+    typeInput.appendChild(opt3);
+
+    bookmarkDiv.appendChild(typeLabel);
+    bookmarkDiv.appendChild(typeInput);
+
+    ////////////////////////////////////////////////////////////////////////////
+
     var bookmarkLabel = document.createElement("label"); //label element, bookm~
     bookmarkLabel.setAttribute('for',"bookmark");
     bookmarkLabel.innerHTML = "URL";
@@ -28,6 +56,7 @@ function createBookmark(url) {
     bookmarkInput.setAttribute('id',"bookmarkUrl");
     bookmarkInput.setAttribute('type',"text");
     bookmarkInput.setAttribute('name',"bookmark");
+    bookmarkInput.setAttribute('readonly',"readonly");
     bookmarkInput.value = url;
 
     bookmarkDiv.appendChild(bookmarkLabel);
