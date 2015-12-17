@@ -3,6 +3,7 @@ label, input {
 }
 
 .title {
+  text-align: center;
   width: 200px;
 }
 
@@ -16,5 +17,15 @@ label, input {
   float: left;
 }
  #logoutBtn {
-   float: right;
- }
+  float: right;
+}
+
+#saveBookmark {
+  float: right;
+  margin: 10px;
+}
+
+#bookmarkTitle, #bookmarkType, #bookmarkUrl {
+  margin: 5px;
+  width: 180px;
+}

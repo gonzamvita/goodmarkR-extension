@@ -1,3 +1,49 @@
+function displayBookmarkForm() {
+    $('.js-login').empty()
+    chrome.tabs.query({currentWindow: true, active: true}, function(tabs){
+        var url = tabs[0].url;
+        $('.js-login').append(createBookmark(url));
+        document.querySelector('#bookmarkForm').addEventListener('submit', onBookmarkSubmit);
+    });
+}
+
+function loadUserToken(token) {
+    var token = localStorage["user_auth_token"];
+    return token;
+}
+
+function onBookmarkSubmit(e) {
+    var url = "http://localhost:3000/"
+    var apiEndpoint= "api/v1/bookmarks"
+    e.preventDefault();
+
+    bookmarkBuilder(function(bookmark){
+        bookmark.title = $("#bookmarkTitle").val();
+        bookmark.type = $("#bookmarkType").val();
+        bookmark.userToken = loadUserToken();
+
+        $.ajax({
+            type: "POST",
+            url: url + apiEndpoint,
+            data: bookmark,
+            dataType: "JSON",
+            error: function(response) {
+                console.log(response);
+            },
+            success: function(response) {
+                successfulBookmarkSave(response);
+                console.log(response);
+            }
+        });
+    });
+
+}
+
+function successfulBookmarkSave() {
+    $('.js-login').html("<div id='bookmarkSuccess'><p>Bookmark saved!!</p></div>");
+    $('#bookmarkSuccess').hide(2000, displayBookmarkForm);
+}
+
 function createBookmark(url) {
     var form = document.createElement("form");
     form.setAttribute('id', "bookmarkForm");
@@ -66,7 +112,7 @@ function createBookmark(url) {
 
     var inputDiv = document.createElement("div");
     var submitInput = document.createElement("input"); //input element, Submit ~
-    submitInput.setAttribute('id',"save");
+    submitInput.setAttribute('id',"saveBookmark");
     submitInput.setAttribute('type',"submit");
     submitInput.setAttribute('value',"Save Bookmark");
     inputDiv.appendChild(submitInput);
