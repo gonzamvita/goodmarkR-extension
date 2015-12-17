@@ -11,3 +11,15 @@ document.addEventListener('DOMContentLoaded', function () {
         logout(e);
     })
 });
+
+function logout(e) {
+    e.preventDefault();
+
+    removeTokenFromLocalStorage();
+    $('.js-login').html("<div id='logoutSuccess'><p>See you soon!</p></div>");
+    $('#logoutSuccess').hide(2000, displayLoginForm);
+}
+
+function removeTokenFromLocalStorage() {
+    localStorage.removeItem("user_auth_token");
+}
