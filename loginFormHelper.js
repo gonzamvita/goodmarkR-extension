@@ -5,7 +5,7 @@ function displayLoginForm() {
 }
 
 function onLogInSubmit(e) {
-    var url = "http://localhost:3000/"
+    var url = "http://goodmarkr.herokuapp.com/"
     var apiEndpoint= "api/v1/users/sign_in"
     e.preventDefault();
 

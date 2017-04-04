@@ -13,7 +13,7 @@ function loadUserToken(token) {
 }
 
 function onBookmarkSubmit(e) {
-    var url = "http://localhost:3000/"
+    var url = "http://goodmarkr.herokuapp.com/"
     var apiEndpoint= "api/v1/bookmarks"
     e.preventDefault();
 

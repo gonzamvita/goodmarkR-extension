@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
         displayBookmarkForm();
     }
     $('#toHomeBtn').on('click', function(e) {
-        window.open('http://localhost:3000/bookmarks', '_blank');
+        window.open('http://goodmarkr.herokuapp.com/bookmarks', '_blank');
     })
     $('#logoutBtn').on('click', function(e) {
         logout(e);
